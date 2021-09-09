@@ -1,0 +1,23 @@
+version: "3"
+services:
+  redis-server:
+    image: redis
+    ports:
+     - "6379:6379"
+  api:
+    container_name: api
+    build: 
+      dockerfile: dockerfile
+      context: ./api
+    ports:
+      - "8000:8000"
+    depends_on:
+      - redis-server
+  workers:
+    build: 
+      dockerfile: dockerfile
+      context: ./workers
+    ports:
+      - "8001-9000:5000"
+    depends_on:
+      - redis-server
