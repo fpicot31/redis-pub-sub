@@ -75,9 +75,11 @@ curl --location --request GET 'http://127.0.0.1:8000/key/sms-1588048730269'
 
 ## Commands:
 ### **Start**:
+```sh
 docker swarm init 
 docker stack deploy -c docker-service.yml myapp
 docker stack ps myapp
+```
 
 ### **Stop**:
 docker stack rm myapp
