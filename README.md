@@ -73,36 +73,22 @@ curl --location --request GET 'http://127.0.0.1:8000/key/{uuid}'
 curl --location --request GET 'http://127.0.0.1:8000/key/sms-1588048730269'
 ```
 
-===============
-docker-compose up --scale workers=3 -d
-
+## Commands:
+### **Start**:
 docker swarm init 
-docker swarm join-token manager
-docker swarm join-token worker
-
 docker stack deploy -c docker-service.yml myapp
 docker stack ps myapp
-docker stack rm myapp
 
+### **Stop**:
+docker stack rm myapp
 docker swarm leave --force
 
-docker container logs 
-docker stack ps myapp
-
-docker tag redis_pubsub_node_api:latest  atos06/redis_pubsub_node_api:latest
-docker push  atos06/redis_pubsub_node_api:latest
-
+### **Logs example**:
 docker service logs  -f d8df3gsh6mp8
 
-curl --location --request POST 'http://127.0.0.1:8000/sms' \
---header 'Content-Type: application/json' \
---data-raw '{
-	"number":"+541166587382",
-	"text":"hello damian"
-}'
-
-curl --location --request GET 'http://127.0.0.1:8000/key/sms-1588048730269'
-
+### **Push image into Github example**:
+docker tag redis_pubsub_node_api:latest  atos06/redis_pubsub_node_api:latest
+docker push  atos06/redis_pubsub_node_api:latest
 
 
 
